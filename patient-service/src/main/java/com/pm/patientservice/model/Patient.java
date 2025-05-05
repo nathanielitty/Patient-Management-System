@@ -27,6 +27,7 @@ public class Patient {
     @NotNull
     private LocalDate dateOfBirth;
 
+    @Column(name = "Registered_Date")
     @NotNull
     private LocalDate registerDate;
 
