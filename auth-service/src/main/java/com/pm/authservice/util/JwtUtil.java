@@ -32,4 +32,18 @@ public class JwtUtil {
                 .signWith(secretKey)
                 .compact();
     }
+
+    public void validateToken(String token) {
+        try {
+            Jwts.parser().verifyWith((SecretKey)  secretKey)
+                    .build()
+                    .parseSignedClaims(token);
+        }
+        catch (SignatureException ex) {
+            throw new JwtException("Invalid JWT signature");
+        }
+        catch (JwtException ex) {
+            throw new JwtException("Invalid JWT");
+        }
+    }
 }
